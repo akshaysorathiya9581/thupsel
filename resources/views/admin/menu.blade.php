@@ -78,7 +78,7 @@
                 @endif
             @endif
 
-            @if(Gate::check('manage service & part') || Gate::check('manage asset') || Gate::check('manage wo request') ||  Gate::check('manage client') || Gate::check('manage estimation') || Gate::check('manage work order') || Gate::check('manage contact') || Gate::check('manage note') )
+            @if(Gate::check('manage service & part') || Gate::check('manage asset') || Gate::check('manage wo request') ||  Gate::check('manage client') || Gate::check('manage estimation') || Gate::check('manage work order') || Gate::check('manage contact') || Gate::check('manage note') || Gate::check('manage category') )
                 <li class="cdxmenu-title">
                     <h5>{{__('Business Management')}}</h5>
                 </li>
@@ -88,6 +88,14 @@
                         <a href="{{route('client.index')}}">
                             <div class="icon-item"><i data-feather="user-check"></i></div>
                             <span>{{__('Client')}}</span>
+                        </a>
+                    </li>
+                @endif
+                @if(Gate::check('manage category'))
+                    <li class="menu-item {{in_array($routeName,['category.index','category.show'])?'active':''}}">
+                        <a href="{{route('category.index')}}">
+                            <div class="icon-item"><i data-feather="user-check"></i></div>
+                            <span>{{__('Category')}}</span>
                         </a>
                     </li>
                 @endif

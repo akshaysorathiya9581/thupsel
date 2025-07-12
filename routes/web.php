@@ -19,6 +19,7 @@ use App\Http\Controllers\EstimationController;
 use App\Http\Controllers\WorkOrderController;
 use App\Http\Controllers\WOTypeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -153,6 +154,14 @@ Route::resource('role', RoleController::class)->middleware(
 
 //-------------------------------Note-------------------------------------------
 Route::resource('note', NoticeBoardController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
+//-------------------------------Category-------------------------------------------
+Route::resource('category', CategoryController::class)->middleware(
     [
         'auth',
         'XSS',
