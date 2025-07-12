@@ -104,7 +104,7 @@
 <script src="{{ asset('assets/js/vendors/datatable/pdfmake.js') }}"></script>
 <script src="{{ asset('assets/js/vendors/datatable/vfs_fonts.js') }}"></script>
 <script src="{{ asset('assets/js/vendors/datatable/buttons.html5.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 <!-- Custom script-->
 
 <script src="{{ asset('assets/js/vendors/notify/bootstrap-notify.js') }}"></script>

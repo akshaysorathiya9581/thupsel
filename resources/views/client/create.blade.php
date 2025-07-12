@@ -1,17 +1,17 @@
-{{Form::open(array('url'=>'client','method'=>'post'))}}
+{{Form::open(array('url'=>'client','method'=>'post', 'id'=>'clientForm'))}}
 <div class="modal-body">
     <div class="row">
         <div class="form-group col-md-6">
             {{Form::label('name',__('Name'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
-            {{Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter Name'),'required'=>'required'))}}
+            {{Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter Name')))}}
         </div>
         <div class="form-group col-md-6">
             {{Form::label('email',__('Email'),array('class'=>'form-label'))}} <span class="text-danger">*</span>
-            {{Form::text('email',null,array('class'=>'form-control','placeholder'=>__('Enter email'),'required'=>'required'))}}
+            {{Form::text('email',null,array('class'=>'form-control','placeholder'=>__('Enter email')))}}
         </div>
         <div class="form-group col-md-6">
             {{Form::label('phone_number',__('Phone Number'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
-            {{Form::text('phone_number',null,array('class'=>'form-control','placeholder'=>__('Enter phone number'),'required'=>'required'))}}
+            {{Form::text('phone_number',null,array('class'=>'form-control','placeholder'=>__('Enter phone number')))}}
         </div>
         <div class="form-group col-md-6">
             {{Form::label('company',__('Company'),array('class'=>'form-label')) }}
@@ -24,23 +24,23 @@
     <div class="row">
         <div class="form-group col-md-6">
             {{Form::label('service_city',__('City'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
-            {{Form::text('service_city',null,array('class'=>'form-control','placeholder'=>__('Enter service city'),'required'=>'required'))}}
+            {{Form::text('service_city',null,array('class'=>'form-control','placeholder'=>__('Enter service city')))}}
         </div>
         <div class="form-group col-md-6">
             {{Form::label('service_state',__('State'),array('class'=>'form-label'))}} <span class="text-danger">*</span>
-            {{Form::text('service_state',null,array('class'=>'form-control','placeholder'=>__('Enter service state'),'required'=>'required'))}}
+            {{Form::text('service_state',null,array('class'=>'form-control','placeholder'=>__('Enter service state')))}}
         </div>
         <div class="form-group col-md-6">
             {{Form::label('service_country',__('Country'),array('class'=>'form-label'))}} <span class="text-danger">*</span>
-            {{Form::text('service_country',null,array('class'=>'form-control','placeholder'=>__('Enter service country'),'required'=>'required'))}}
+            {{Form::text('service_country',null,array('class'=>'form-control','placeholder'=>__('Enter service country')))}}
         </div>
         <div class="form-group col-md-6">
             {{Form::label('service_zip_code',__('Zip Code'),array('class'=>'form-label'))}} <span class="text-danger">*</span>
-            {{Form::text('service_zip_code',null,array('class'=>'form-control','placeholder'=>__('Enter service zip code'),'required'=>'required'))}}
+            {{Form::text('service_zip_code',null,array('class'=>'form-control','placeholder'=>__('Enter service zip code')))}}
         </div>
         <div class="form-group col-md-12">
             {{Form::label('service_address',__('Address'),array('class'=>'form-label'))}} <span class="text-danger">*</span>
-            {{Form::textarea('service_address',null,array('class'=>'form-control','rows'=>2,'placeholder'=>__('Enter service address'),'required'=>'required'))}}
+            {{Form::textarea('service_address',null,array('class'=>'form-control','rows'=>2,'placeholder'=>__('Enter service address')))}}
         </div>
     </div>
     <div class=" col-md-12 mb-20">

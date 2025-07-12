@@ -18,6 +18,71 @@ $(document).on('click', '.customModal', function () {
             $('#customModal .body').html(result);
             $("#customModal").modal('show');
             select2();
+
+            $('#clientForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    phone_number: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 15
+                    },
+                    service_city: {
+                        required: true
+                    },
+                    service_state: {
+                        required: true
+                    },
+                    service_country: {
+                        required: true
+                    },
+                    service_zip_code: {
+                        required: true
+                    },
+                    service_address: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Name must be at least 2 characters long"
+                    },
+                    phone_number: {
+                        required: "Please enter your phone number",
+                        digits: "Only digits are allowed",
+                        minlength: "Phone number must be at least 10 digits",
+                        maxlength: "Phone number must not exceed 15 digits"
+                    },
+                    service_city: {
+                        required: "Please enter your service city",
+                    },
+                    service_state: {
+                        required: "Please enter your service state",
+                    },
+                    service_country: {
+                        required: "Please enter your service country",
+                    },
+                    service_zip_code: {
+                        required: "Please enter your service zip code",
+                    },
+                    service_address: {
+                        required: "Please enter your service address",
+                    }
+                },
+                errorElement: 'span',
+                errorClass: 'text-danger',
+                highlight: function (element) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
         },
         error: function (result) {
         }
