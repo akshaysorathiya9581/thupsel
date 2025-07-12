@@ -44,12 +44,12 @@ class WORequestController extends Controller
         if (\Auth::user()->can('create wo request')) {
             $validator = \Validator::make(
                 $request->all(), [
-                    'request_detail' => 'required',
-                    'client' => 'required',
-                    'asset' => 'required',
-                    'priority' => 'required',
-                    'due_date' => 'required',
-                    'assign' => 'required',
+                    // 'request_detail' => 'required',
+                    // 'client' => 'required',
+                    // 'asset' => 'required',
+                    // 'priority' => 'required',
+                    // 'due_date' => 'required',
+                    // 'assign' => 'required',
                 ]
             );
             if ($validator->fails()) {
@@ -58,13 +58,13 @@ class WORequestController extends Controller
             }
 
             $wORequest = new WORequest();
-            $wORequest->request_detail = $request->request_detail;
-            $wORequest->client = $request->client;
-            $wORequest->asset = $request->asset;
-            $wORequest->priority = $request->priority;
-            $wORequest->due_date = $request->due_date;
-            $wORequest->status = $request->status;
-            $wORequest->assign = $request->assign;
+            $wORequest->request_detail = !empty($request->request_detail) ? $request->request_detail : null;
+            $wORequest->client         = !empty($request->client) ? $request->client : 0;
+            $wORequest->asset          = !empty($request->asset) ? $request->asset : 0;
+            $wORequest->priority       = !empty($request->priority) ? $request->priority : null;
+            $wORequest->due_date       = !empty($request->due_date) ? $request->due_date : null;
+            $wORequest->status         = !empty($request->status) ? $request->status : null;
+            $wORequest->assign         = !empty($request->assign) ? $request->assign : 0;
             $wORequest->notes = !empty($request->notes)?$request->notes:null;
             $wORequest->preferred_date = !empty($request->preferred_date)?$request->preferred_date:null;
             $wORequest->preferred_time = !empty($request->preferred_time)?$request->preferred_time:null;
@@ -113,12 +113,12 @@ class WORequestController extends Controller
         if (\Auth::user()->can('edit wo request')) {
             $validator = \Validator::make(
                 $request->all(), [
-                    'request_detail' => 'required',
-                    'client' => 'required',
-                    'asset' => 'required',
-                    'priority' => 'required',
-                    'due_date' => 'required',
-                    'assign' => 'required',
+                    // 'request_detail' => 'required',
+                    // 'client' => 'required',
+                    // 'asset' => 'required',
+                    // 'priority' => 'required',
+                    // 'due_date' => 'required',
+                    // 'assign' => 'required',
                 ]
             );
             if ($validator->fails()) {
@@ -127,13 +127,13 @@ class WORequestController extends Controller
             }
 
             $wORequest=WORequest::find($id);
-            $wORequest->request_detail = $request->request_detail;
-            $wORequest->client = $request->client;
-            $wORequest->asset = $request->asset;
-            $wORequest->priority = $request->priority;
-            $wORequest->due_date = $request->due_date;
-            $wORequest->status = $request->status;
-            $wORequest->assign = $request->assign;
+            $wORequest->request_detail = !empty($request->request_detail) ? $request->request_detail : null;
+            $wORequest->client         = !empty($request->client) ? $request->client : 0;
+            $wORequest->asset          = !empty($request->asset) ? $request->asset : 0;
+            $wORequest->priority       = !empty($request->priority) ? $request->priority : null;
+            $wORequest->due_date       = !empty($request->due_date) ? $request->due_date : null;
+            $wORequest->status         = !empty($request->status) ? $request->status : null;
+            $wORequest->assign         = !empty($request->assign) ? $request->assign : 0;
             $wORequest->notes = !empty($request->notes)?$request->notes:null;
             $wORequest->preferred_date = !empty($request->preferred_date)?$request->preferred_date:null;
             $wORequest->preferred_time = !empty($request->preferred_time)?$request->preferred_time:null;
