@@ -38,11 +38,11 @@ class AssetController extends Controller
                 $request->all(), [
                     'name' => 'required',
                     'asset_number' => 'required',
-                    'part' => 'required',
-                    'giai' => 'required',
-                    'order_date' => 'required',
-                    'installation_date' => 'required',
-                    'purchase_date' => 'required',
+                    // 'part' => 'required',
+                    // 'giai' => 'required',
+                    // 'order_date' => 'required',
+                    // 'installation_date' => 'required',
+                    // 'purchase_date' => 'required',
                 ]
             );
             if ($validator->fails()) {
@@ -53,12 +53,12 @@ class AssetController extends Controller
             $asset = new Asset();
             $asset->name = $request->name;
             $asset->asset_number = $request->asset_number;
-            $asset->part = $request->part;
-            $asset->parent_asset = !empty($request->parent_asset)?$request->parent_asset:0;
-            $asset->giai = $request->giai;
-            $asset->order_date = $request->order_date;
-            $asset->installation_date = $request->installation_date;
-            $asset->purchase_date = $request->purchase_date;
+            $asset->part = !empty($request->part) ? $request->part : 0;
+            $asset->parent_asset = !empty($request->parent_asset) ? $request->parent_asset : 0;
+            $asset->giai = $request->giai ?? null;
+            $asset->purchase_date = !empty($request->purchase_date) ? $request->purchase_date : null;
+            $asset->order_date = !empty($request->order_date) ? $request->order_date : null;
+            $asset->installation_date = !empty($request->installation_date) ? $request->installation_date : null;
             $asset->warranty_expiration = !empty($request->warranty_expiration)?$request->warranty_expiration:null;
             $asset->warranty_notes = !empty($request->warranty_notes)?$request->warranty_notes:null;
             $asset->description = !empty($request->description)?$request->description:null;
@@ -96,11 +96,11 @@ class AssetController extends Controller
                 $request->all(), [
                     'name' => 'required',
                     'asset_number' => 'required',
-                    'part' => 'required',
-                    'giai' => 'required',
-                    'order_date' => 'required',
-                    'installation_date' => 'required',
-                    'purchase_date' => 'required',
+                    // 'part' => 'required',
+                    // 'giai' => 'required',
+                    // 'order_date' => 'required',
+                    // 'installation_date' => 'required',
+                    // 'purchase_date' => 'required',
                 ]
             );
             if ($validator->fails()) {
@@ -111,12 +111,12 @@ class AssetController extends Controller
 
             $asset->name = $request->name;
             $asset->asset_number = $request->asset_number;
-            $asset->part = $request->part;
-            $asset->parent_asset = !empty($request->parent_asset)?$request->parent_asset:0;
-            $asset->giai = $request->giai;
-            $asset->order_date = $request->order_date;
-            $asset->installation_date = $request->installation_date;
-            $asset->purchase_date = $request->purchase_date;
+            $asset->part = !empty($request->part) ? $request->part : 0;
+            $asset->parent_asset = !empty($request->parent_asset) ? $request->parent_asset : 0;
+            $asset->giai = $request->giai ?? null;
+            $asset->purchase_date = !empty($request->purchase_date) ? $request->purchase_date : null;
+            $asset->order_date = !empty($request->order_date) ? $request->order_date : null;
+            $asset->installation_date = !empty($request->installation_date) ? $request->installation_date : null;
             $asset->warranty_expiration = !empty($request->warranty_expiration)?$request->warranty_expiration:null;
             $asset->warranty_notes = !empty($request->warranty_notes)?$request->warranty_notes:null;
             $asset->description = !empty($request->description)?$request->description:null;

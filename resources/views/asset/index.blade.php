@@ -37,9 +37,9 @@
                             <th>{{__('Part')}}</th>
                             <th>{{__('Parent Asset')}}</th>
                             <th>{{__('GIAI')}}</th>
-                            <th>{{__('Order')}}</th>
+                            {{-- <th>{{__('Order')}}</th> --}}
                             <th>{{__('Purchase')}}</th>
-                            <th>{{__('Installation')}}</th>
+                            {{-- <th>{{__('Installation')}}</th> --}}
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
@@ -51,9 +51,9 @@
                                 <td>{{ !empty($asset->parts)?$asset->parts->title:'-' }} </td>
                                 <td>{{ !empty($asset->parents)?$asset->parents->name:'-' }} </td>
                                 <td>{{ $asset->giai }} </td>
-                                <td>{{ dateFormat($asset->order_date) }} </td>
+                                {{-- <td>{{ dateFormat($asset->order_date) }} </td> --}}
                                 <td>{{ dateFormat($asset->purchase_date) }} </td>
-                                <td>{{ dateFormat($asset->installation_date) }} </td>
+                                {{-- <td>{{ dateFormat($asset->installation_date) }} </td> --}}
                                 <td>
                                     <div class="cart-action">
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['asset.destroy', $asset->id]]) !!}
