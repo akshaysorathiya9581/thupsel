@@ -13,7 +13,7 @@ class CategoryController extends Controller
         if (\Auth::user()->can('manage category')) {
             $category = Category::orderBy('id', 'desc')->get();
 
-            return view('note.index', compact('category'));
+            return view('category.index', compact('category'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
@@ -37,7 +37,7 @@ class CategoryController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $category = new NoticeBoard();
+            $category = new Category();
             $category->name = $request->name;
             $category->save();
 
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function show(NoticeBoard $noticeBoard)
+    public function show(Category $category)
     {
         //
     }
