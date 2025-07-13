@@ -108,11 +108,11 @@ class WorkOrderController extends Controller
                     $woService->wo_id = $workOrder->id;
                     $woService->service_part_id = $services[$i]['service_part_id'];
                     $woService->quantity = $services[$i]['quantity'];
+                    $woService->unit = $services[$i]['unit'];
                     $woService->amount = $services[$i]['amount'];
                     $woService->description = $services[$i]['description'];
                     $woService->type = 'service';
                     $woService->save();
-
 
                     foreach ($service->serviceTasks as $task){
                         $WOServiceTask=new WOServiceTask();
@@ -127,13 +127,13 @@ class WorkOrderController extends Controller
                 }
             }
 
-
             if (!empty($parts)) {
                 for ($i = 0; $i < count($parts); $i++) {
                     $woPart = new WOServicePart();
                     $woPart->wo_id = $workOrder->id;
                     $woPart->service_part_id = $parts[$i]['service_part_id'];
                     $woPart->quantity = $parts[$i]['quantity'];
+                    $woPart->unit = $parts[$i]['unit'];
                     $woPart->amount = $parts[$i]['amount'];
                     $woPart->description = $parts[$i]['description'];
                     $woPart->type = 'part';
@@ -271,6 +271,7 @@ class WorkOrderController extends Controller
                     }
                     $woService->service_part_id = $services[$i]['service_part_id'];
                     $woService->quantity = $services[$i]['quantity'];
+                    $woService->unit = $services[$i]['unit'];
                     $woService->amount = $services[$i]['amount'];
                     $woService->description = $services[$i]['description'];
                     $woService->type = 'service';
@@ -288,6 +289,7 @@ class WorkOrderController extends Controller
                     }
                     $woPart->service_part_id = $parts[$i]['service_part_id'];
                     $woPart->quantity = $parts[$i]['quantity'];
+                    $woPart->unit = $parts[$i]['unit'];
                     $woPart->amount = $parts[$i]['amount'];
                     $woPart->description = $parts[$i]['description'];
                     $woPart->type = 'part';

@@ -51,7 +51,7 @@
                 success: function (data) {
                     currentElement.find('.quantity').val(1);
                     currentElement.find('.amount').val(data.price);
-                    currentElement.find('.unit').html(data.unit);
+                    currentElement.find('.unit').val(data.unit);
                     currentElement.find('.description').val(data.description);
                 },
             });
@@ -164,28 +164,28 @@
                             </tr>
                             </thead>
                             <tbody data-repeater-item>
-                            <tr>
-                                <td width="30%">
-                                    {{Form::select('service_part_id',$parts,null,array('class'=>'form-control hidesearch service_part_id select2'))}}
-                                </td>
-                                <td>
-                                    {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
-                                </td>
-                                <td>
-                                    <div class="input-group unit"></div>
-                                </td>
-                                <td>
-                                    {{Form::number('amount',null,array('class'=>'form-control amount'))}}
-                                </td>
-                                <td>
-                                    {{Form::textarea('description',null,array('class'=>'form-control description','rows'=>1))}}
-                                </td>
-                                <td>
-                                    <a class="text-danger" data-repeater-delete href="#">
-                                        <i data-feather="trash-2"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td width="30%">
+                                        {{Form::select('service_part_id',$parts,null,array('class'=>'form-control hidesearch service_part_id select2'))}}
+                                    </td>
+                                    <td>
+                                        {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
+                                    </td>
+                                    <td>
+                                        {{Form::text('unit',null,array('class'=>'form-control unit', 'readonly'=>'readonly'))}}
+                                    </td>
+                                    <td>
+                                        {{Form::number('amount',null,array('class'=>'form-control amount'))}}
+                                    </td>
+                                    <td>
+                                        {{Form::textarea('description',null,array('class'=>'form-control description','rows'=>1))}}
+                                    </td>
+                                    <td>
+                                        <a class="text-danger" data-repeater-delete href="#">
+                                            <i data-feather="trash-2"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

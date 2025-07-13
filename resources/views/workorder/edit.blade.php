@@ -110,7 +110,7 @@
                 success: function (data) {
                     currentElement.find('.quantity').val(1);
                     currentElement.find('.amount').val(data.price);
-                    currentElement.find('.unit').html(data.unit);
+                    currentElement.find('.unit').val(data.unit);
                     currentElement.find('.description').val(data.description);
                 },
             });
@@ -211,48 +211,43 @@
                     <div class="card repeater " data-value='{!! json_encode($workOrderServices) !!}'>
                         <div class="card-header">
                             <h4>{{__('Services')}}</h4>
-                            <a class="btn btn-primary btn-sm" href="#" data-repeater-create=""> <i
-                                    class="fa fa-plus mr-5"></i>{{__('Add Service')}}</a>
+                            <a class="btn btn-primary btn-sm" href="#" data-repeater-create=""> <i class="fa fa-plus mr-5"></i>{{__('Add Service')}}</a>
                         </div>
                         <div class="card-body">
                             <table class="display dataTable cell-border" data-repeater-list="services">
                                 <thead>
-                                <tr>
-                                    <th>{{__('Service')}}</th>
-                                    <th>{{__('Quantity')}}</th>
-                                    <th>{{__('Unit')}}</th>
-                                    <th>{{__('Amount')}}</th>
-                                    <th>{{__('Description')}}</th>
-                                    <th>#</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{__('Service')}}</th>
+                                        <th>{{__('Quantity')}}</th>
+                                        <th>{{__('Unit')}}</th>
+                                        <th>{{__('Amount')}}</th>
+                                        <th>{{__('Description')}}</th>
+                                        <th>#</th>
+                                    </tr>
                                 </thead>
                                 <tbody data-repeater-item>
-                                <tr>
-                                    {{Form::hidden('id',null,array('class'=>'form-control id'))}}
-                                    <td width="30%">
-                                        {{Form::select('service_part_id',$services,null,array('class'=>'form-control hidesearch service_part_id select2'))}}
-                                    </td>
-                                    <td>
-                                        {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
-                                    </td>
-                                    <td>
-                                        <div class="input-group unit">
-                                            {{Form::text('unit',null,array('class'=>'form-control','disabled'))}}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{Form::number('amount',null,array('class'=>'form-control amount'))}}
-                                    </td>
-                                    <td>
-                                        {{Form::textarea('description',null,array('class'=>'form-control description','rows'=>1))}}
-                                    </td>
-                                    <td>
-                                        <a class="text-danger" data-repeater-delete href="#"> <i
-                                                data-feather="trash-2"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        {{Form::hidden('id',null,array('class'=>'form-control id'))}}
+                                        <td width="30%">
+                                            {{Form::select('service_part_id',$services,null,array('class'=>'form-control hidesearch service_part_id select2'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::text('unit',null,array('class'=>'form-control unit', 'readonly'=>'readonly'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::number('amount',null,array('class'=>'form-control amount'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::textarea('description',null,array('class'=>'form-control description','rows'=>1))}}
+                                        </td>
+                                        <td>
+                                            <a class="text-danger" data-repeater-delete href="#"> <i data-feather="trash-2"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -261,48 +256,43 @@
                     <div class="card repeater parts" data-value='{!! json_encode($workOrderParts) !!}'>
                         <div class="card-header">
                             <h4>{{__('Parts')}}</h4>
-                            <a class="btn btn-primary btn-sm" href="#" data-repeater-create=""> <i
-                                    class="fa fa-plus mr-5"></i>{{__('Add Part')}}</a>
+                            <a class="btn btn-primary btn-sm" href="#" data-repeater-create=""> <i class="fa fa-plus mr-5"></i>{{__('Add Part')}}</a>
                         </div>
                         <div class="card-body">
                             <table class="display dataTable cell-border" data-repeater-list="parts">
                                 <thead>
-                                <tr>
-                                    <th>{{__('Part')}}</th>
-                                    <th>{{__('Quantity')}}</th>
-                                    <th>{{__('Unit')}}</th>
-                                    <th>{{__('Amount')}}</th>
-                                    <th>{{__('Description')}}</th>
-                                    <th>#</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{__('Part')}}</th>
+                                        <th>{{__('Quantity')}}</th>
+                                        <th>{{__('Unit')}}</th>
+                                        <th>{{__('Amount')}}</th>
+                                        <th>{{__('Description')}}</th>
+                                        <th>#</th>
+                                    </tr>
                                 </thead>
                                 <tbody data-repeater-item>
-                                <tr>
-                                    {{Form::hidden('id',null,array('class'=>'form-control id'))}}
-                                    <td width="30%">
-                                        {{Form::select('service_part_id',$parts,null,array('class'=>'form-control hidesearch_part service_part_id'))}}
-                                    </td>
-                                    <td>
-                                        {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
-                                    </td>
-                                    <td>
-                                        <div class="input-group unit">
-                                            {{Form::text('unit',null,array('class'=>'form-control','disabled'))}}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{Form::number('amount',null,array('class'=>'form-control amount'))}}
-                                    </td>
-                                    <td>
-                                        {{Form::textarea('description',null,array('class'=>'form-control description','rows'=>1))}}
-                                    </td>
-                                    <td>
-                                        <a class="text-danger" data-repeater-delete href="#"> <i
-                                                data-feather="trash-2"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        {{Form::hidden('id',null,array('class'=>'form-control id'))}}
+                                        <td width="30%">
+                                            {{Form::select('service_part_id',$parts,null,array('class'=>'form-control hidesearch_part service_part_id'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::text('unit',null,array('class'=>'form-control unit', 'readonly'=>'readonly'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::number('amount',null,array('class'=>'form-control amount'))}}
+                                        </td>
+                                        <td>
+                                            {{Form::textarea('description',null,array('class'=>'form-control description','rows'=>1))}}
+                                        </td>
+                                        <td>
+                                            <a class="text-danger" data-repeater-delete href="#"> <i data-feather="trash-2"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -314,7 +304,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     {{Form::close()}}
 @endsection

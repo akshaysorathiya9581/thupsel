@@ -12,6 +12,7 @@ class WOServicePart extends Model
         'wo_id',
         'service_part_id',
         'quantity',
+        'unit',
         'amount',
         'type',
         'description',

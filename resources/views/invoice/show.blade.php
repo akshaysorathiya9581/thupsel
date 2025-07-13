@@ -30,19 +30,13 @@
             $('.invoice-action').removeClass('d-none');
             document.body.innerHTML = originalContents;
         });
-
     </script>
 @endpush
-
 @section('card-action-btn')
     <a class="btn btn-warning print me-2" href="javascript:void(0);"> {{__('Print')}}</a>
     @can('edit invoice')
-        <a class="btn btn-primary customModal"  data-size="lg"
-         href="#"
-           data-url="{{ route('invoice.edit',$invoice->id) }}"
-           data-title="{{__('Edit Invoice')}}">  {{__('Edit')}}</a>
+        <a class="btn btn-primary customModal" data-size="lg" href="#" data-url="{{ route('invoice.edit',$invoice->id) }}" data-title="{{__('Edit Invoice')}}">  {{__('Edit')}}</a>
     @endcan
-
 @endsection
 @section('content')
     <div id="invoice-print">
@@ -52,18 +46,13 @@
                     <div class="head-invoice">
                         <div class="codex-brand">
                             <a class="codexbrand-logo" href="Javascript:void(0);">
-                                <img class="img-fluid invoice-logo"
-                                     src=" {{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
-                                     alt="invoice-logo">
+                                <img class="img-fluid invoice-logo" src=" {{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}" alt="invoice-logo">
                             </a>
                             <a class="codexdark-logo" href="Javascript:void(0);">
-                                <img class="img-fluid invoice-logo"
-                                     src=" {{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
-                                     alt="invoice-logo">
+                                <img class="img-fluid invoice-logo" src=" {{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}" alt="invoice-logo">
                             </a>
                         </div>
                         <ul class="contact-list">
-
                             <li>
                                 <div class="icon-wrap"><i class="fa fa-user"></i>
                                 </div>{{$settings['company_name']}}
@@ -76,7 +65,6 @@
                                 <div class="icon-wrap"><i class="fa fa-envelope"></i>
                                 </div>{{$settings['company_email']}}
                             </li>
-
                         </ul>
                     </div>
                     <div class="invoice-user">
@@ -94,7 +82,6 @@
                                     </div>{{ !empty($workorder->clients)?$workorder->clients->phone_number:''}}
                                 </li>
                             </ul>
-
                             <h6 class="mt-10 text-primary">{{__('Service Address')}}:</h6>
                             <ul class="detail-list">
                                 <li>
@@ -106,10 +93,8 @@
                                         , {{$workorder->clients->clients->service_country}},
                                         {{$workorder->clients->clients->service_zip_code}}
                                     @endif
-
                                 </li>
                             </ul>
-
                             <h6 class="mt-10 text-primary">{{__('Billing Address')}}:</h6>
                             <ul class="detail-list">
                                 <li>
@@ -121,13 +106,9 @@
                                         , {{$workorder->clients->clients->billing_country}},
                                         {{$workorder->clients->clients->billing_zip_code}}
                                     @endif
-
                                 </li>
                             </ul>
-
-
                         </div>
-
                         <div class="right-user">
                             <ul class="detail-list">
                                 <li>
@@ -147,8 +128,6 @@
                                     {{__('Due Date')}}:
                                     <span> {{dateFormat($invoice->due_date)}} </span>
                                 </li>
-
-
                                 <li>{{__('Status')}}:
                                     @if($invoice->status=='paid')
                                         <span
@@ -157,13 +136,10 @@
                                         <span
                                             class="badge badge-danger">{{\App\Models\Invoice::$status[$invoice->status] }}</span>
                                     @endif
-
                                 </li>
-
                             </ul>
                         </div>
                     </div>
-
                     <div class="body-invoice">
                         <div class="table-responsive1">
                             <table class="table ml-1">
@@ -171,9 +147,9 @@
                                 <tr>
                                     <th>{{__('Service')}}</th>
                                     <th>{{__('Quantity')}}</th>
+                                    <th>{{__('Unit')}}</th>
                                     <th>{{__('Description')}}</th>
                                     <th>{{__('Amount')}}</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -181,6 +157,7 @@
                                     <tr>
                                         <td>{{!empty($service->serviceParts)?$service->serviceParts->title:'-'}}</td>
                                         <td>{{$service->quantity}} {{!empty($service->serviceParts)?$service->serviceParts->unit:''}}</td>
+                                        <td>{{!empty($service->unit)?$service->unit:'-'}}</td>
                                         <td>{{!empty($service->description)?$service->description:'-'}}</td>
                                         <td>{{priceFormat($service->amount)}}</td>
                                     </tr>
@@ -196,6 +173,7 @@
                                 <tr>
                                     <th>{{__('Part')}}</th>
                                     <th>{{__('Quantity')}}</th>
+                                     <th>{{__('Unit')}}</th>
                                     <th>{{__('Description')}}</th>
                                     <th>{{__('Amount')}}</th>
                                 </tr>
@@ -207,9 +185,9 @@
                                             {{!empty($part->serviceParts)?$part->serviceParts->title:'-'}}
                                         </td>
                                         <td>{{$part->quantity}} {{!empty($part->serviceParts)?$part->serviceParts->unit:''}}</td>
+                                        <td>{{!empty($part->unit)?$part->unit:'-'}}</td>
                                         <td>{{!empty($part->description)?$part->description:'-'}}</td>
                                         <td>{{priceFormat($part->amount)}}</td>
-
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -240,9 +218,7 @@
                                 {{__('Notes')}} : <p>{{$invoice->notes}}</p>
                             @endif
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
