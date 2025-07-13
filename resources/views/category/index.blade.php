@@ -27,6 +27,7 @@
                     <table class="display dataTable cell-border datatbl-advance">
                         <thead>
                         <tr>
+                            <th>{{__('Type')}}</th>
                             <th>{{__('Title')}}</th>
                             <th>{{__('Created At')}}</th>
                             @if(Gate::check('edit category') || Gate::check('delete category') )
@@ -37,6 +38,7 @@
                         <tbody>
                         @foreach($category as $value)
                             <tr>
+                                <td>{{ ucfirst($value->type) }} </td>
                                 <td>{{ $value->name }} </td>
                                 <td>{{dateFormat($value->created_at)}}</td>
                                 @if(Gate::check('edit category') || Gate::check('delete category') )

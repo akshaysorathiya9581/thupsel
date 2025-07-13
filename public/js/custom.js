@@ -17,10 +17,23 @@ $(document).on('click', '.customModal', function () {
         success: function (result) {
             $('#customModal .body').html(result);
             $("#customModal").modal('show');
-            select2();
+            // select2();
+
+            $('.select2').select2({
+                placeholder: 'Select an option',
+                allowClear: true,
+                width: '100%'
+            });
 
             $('#clientForm').validate({
+                ignore: [],
                 rules: {
+                   'parts_cat_id[]': {
+                        required: true
+                    },
+                    'service_cat_id[]': {
+                        required: true
+                    },
                     name: {
                         required: true,
                         minlength: 2
@@ -48,6 +61,12 @@ $(document).on('click', '.customModal', function () {
                     }
                 },
                 messages: {
+                    'parts_cat_id[]': {
+                        required: "Please select at least one parts category"
+                    },
+                    'service_cat_id[]': {
+                        required: "Please select at least one service category"
+                    },
                     name: {
                         required: "Please enter your name",
                         minlength: "Name must be at least 2 characters long"
@@ -82,6 +101,10 @@ $(document).on('click', '.customModal', function () {
                 unhighlight: function (element) {
                     $(element).removeClass('is-invalid');
                 }
+            });
+
+            $('.select2').on('change', function () {
+                $(this).valid(); // trigger validation on change
             });
         },
         error: function (result) {

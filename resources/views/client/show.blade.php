@@ -128,6 +128,38 @@
 
 
                     </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="detail-group">
+                                <h5 class="mb-20">{{ __('Parts Categories') }}</h5>
+                                <ul class="list-unstyled ps-3">
+                                    @forelse($partsCategories as $cat)
+                                        <li class="mb-1">
+                                            <i class="fa fa-circle text-primary me-2" style="font-size: 0.5rem;"></i> {{ $cat->category->name }}
+                                        </li>
+                                    @empty
+                                        <li>-</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="detail-group">
+                                <h5 class="mb-20">{{ __('Service Categories') }}</h5>
+                                <ul class="list-unstyled ps-3">
+                                    @forelse($serviceCategories as $cat)
+                                        <li class="mb-1">
+                                            <i class="fa fa-circle text-primary me-2" style="font-size: 0.5rem;"></i> {{ $cat->category->name }}
+                                        </li>
+                                    @empty
+                                        <li>-</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

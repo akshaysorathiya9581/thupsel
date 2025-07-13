@@ -2,6 +2,21 @@
 <div class="modal-body">
     <div class="row">
         <div class="form-group col-md-6">
+            {{ Form::label('parts_cat_id', __('Select Parts Categories'), ['class' => 'form-label']) }}
+            {{ Form::select('parts_cat_id[]', $parts_category, $selected_parts ?? [], [
+                'class' => 'form-control select2',
+                'multiple' => 'multiple'
+            ]) }}
+        </div>
+
+        <div class="form-group col-md-6">
+            {{ Form::label('service_cat_id', __('Select Service Categories'), ['class' => 'form-label']) }}
+            {{ Form::select('service_cat_id[]', $service_category, $selected_services ?? [], [
+                'class' => 'form-control select2',
+                'multiple' => 'multiple'
+            ]) }}
+        </div>
+        <div class="form-group col-md-6">
             {{Form::label('name',__('Name'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
             {{Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter Name'),'required'=>'required'))}}
         </div>
