@@ -14,9 +14,10 @@
                     'status': 1
                 },
                 show: function () {
-                    $('.hidesearch').select2({
-                        minimumResultsForSearch: -1
-                    });
+                    $(this).find('.select2').select2();
+                    // $('.hidesearch').select2({
+                    //     minimumResultsForSearch: -1
+                    // });
                     $(this).slideDown();
                 },
                 hide: function (deleteEstimation) {
@@ -151,6 +152,23 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            {{ Form::label('client', __('Client Name'),['class'=>'form-label']) }} <span class="text-danger">*</span>
+                            {!! Form::select('client', $clients, null,array('class' => 'form-control hidesearch','required'=>'required')) !!}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('due_date',__('Due Date'),array('class'=>'form-label')) }} <span
+                                class="text-danger">*</span>
+                            {{Form::date('due_date',null,array('class'=>'form-control','required'=>'required'))}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            {{Form::label('notes',__('Notes'),array('class'=>'form-label')) }}
+                            {{Form::textarea('notes',null,array('class'=>'form-control','rows'=>1))}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('preferred_date',__('Preferred Date'),array('class'=>'form-label')) }}
+                            {{Form::date('preferred_date',null,array('class'=>'form-control'))}}
+                        </div>
+                        <div class="form-group">
                             {{Form::label('wo_detail',__('WO Detail'),array('class'=>'form-label')) }} <span
                                 class="text-danger">*</span>
                             {{Form::textarea('wo_detail',null,array('class'=>'form-control','rows'=>1,'required'=>'required'))}}
@@ -161,38 +179,20 @@
                             {!! Form::select('type', $woTypes, null,array('class' => 'form-control hidesearch','required'=>'required')) !!}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('client', __('Client'),['class'=>'form-label']) }} <span class="text-danger">*</span>
-                            {!! Form::select('client', $clients, null,array('class' => 'form-control hidesearch','required'=>'required')) !!}
-                        </div>
-                        <div class="form-group">
                             {{ Form::label('asset', __('Asset'),['class'=>'form-label']) }} <span
                                 class="text-danger">*</span>
                             {!! Form::select('asset', $assets, null,array('class' => 'form-control hidesearch','required'=>'required')) !!}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('due_date',__('Due Date'),array('class'=>'form-label')) }} <span
-                                class="text-danger">*</span>
-                            {{Form::date('due_date',null,array('class'=>'form-control','required'=>'required'))}}
                         </div>
                         <div class="form-group">
                             {{ Form::label('priority', __('Priority'),['class'=>'form-label']) }} <span
                                 class="text-danger">*</span>
                             {!! Form::select('priority', $priority, null,array('class' => 'form-control hidesearch','required'=>'required')) !!}
                         </div>
-
                         <div class="form-group">
                             {{ Form::label('assign', __('Assign'),['class'=>'form-label']) }} <span class="text-danger">*</span>
                             {!! Form::select('assign', $users, null,array('class' => 'form-control hidesearch')) !!}
                         </div>
-                        <div class="form-group col-md-12">
-                            {{Form::label('notes',__('Notes'),array('class'=>'form-label')) }}
-                            {{Form::textarea('notes',null,array('class'=>'form-control','rows'=>1))}}
-                        </div>
                         <hr>
-                        <div class="form-group">
-                            {{Form::label('preferred_date',__('Preferred Date'),array('class'=>'form-label')) }}
-                            {{Form::date('preferred_date',null,array('class'=>'form-control'))}}
-                        </div>
                         <div class="form-group">
                             {{ Form::label('preferred_time', __('Preferred Time'),['class'=>'form-label']) }}
                             {!! Form::select('preferred_time', $time, null,array('class' => 'form-control hidesearch')) !!}
@@ -230,7 +230,7 @@
                                 <tr>
                                     {{Form::hidden('id',null,array('class'=>'form-control id'))}}
                                     <td width="30%">
-                                        {{Form::select('service_part_id',$services,null,array('class'=>'form-control hidesearch service_part_id'))}}
+                                        {{Form::select('service_part_id',$services,null,array('class'=>'form-control hidesearch service_part_id select2'))}}
                                     </td>
                                     <td>
                                         {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}

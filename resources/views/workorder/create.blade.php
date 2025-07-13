@@ -7,6 +7,7 @@
     <script src="{{ asset('js/jquery.repeater.min.js') }}"></script>
     <script>
         var estimationSelector = "body";
+
         if ($(estimationSelector + " .repeater.parts").length) {
             var $rowDragAndDrop = $("body .repeater.parts tbody").sortable({
                 handle: '.sort-handler'
@@ -17,9 +18,7 @@
                     'status': 1
                 },
                 show: function () {
-                    $('.hidesearch').select2({
-                        minimumResultsForSearch: -1
-                    });
+                    $(this).find('.select2').select2();
                     $(this).slideDown();
                 },
                 hide: function (deletePart) {
@@ -92,6 +91,22 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            {{ Form::label('client', __('Client Name'),['class'=>'form-label']) }} <span class="text-danger">*</span>
+                            {!! Form::select('client', $clients, old('client'),array('class' => 'form-control hidesearch','required'=>'required')) !!}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('due_date',__('Due Date'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
+                            {{Form::date('due_date',old('due_date'),array('class'=>'form-control','required'=>'required'))}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            {{Form::label('notes',__('Notes'),array('class'=>'form-label')) }}
+                            {{Form::textarea('notes',old('notes'),array('class'=>'form-control','rows'=>1))}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('preferred_date',__('Preferred Date'),array('class'=>'form-label')) }}
+                            {{Form::date('preferred_date',old('preferred_date'),array('class'=>'form-control'))}}
+                        </div>
+                        <div class="form-group">
                             {{Form::label('wo_detail',__('WO Detail'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
                             {{Form::textarea('wo_detail',old('wo_detail'),array('class'=>'form-control','rows'=>1,'required'=>'required'))}}
                         </div>
@@ -99,18 +114,12 @@
                             {{ Form::label('type', __('Type'),['class'=>'form-label']) }} <span class="text-danger">*</span>
                             {!! Form::select('type', $woTypes, old('type'),array('class' => 'form-control hidesearch','required'=>'required')) !!}
                         </div>
-                        <div class="form-group">
-                            {{ Form::label('client', __('Client'),['class'=>'form-label']) }} <span class="text-danger">*</span>
-                            {!! Form::select('client', $clients, old('client'),array('class' => 'form-control hidesearch','required'=>'required')) !!}
-                        </div>
+                        
                         <div class="form-group">
                             {{ Form::label('asset', __('Asset'),['class'=>'form-label']) }} <span class="text-danger">*</span>
                             {!! Form::select('asset', $assets, old('asset'),array('class' => 'form-control hidesearch','required'=>'required')) !!}
                         </div>
-                        <div class="form-group">
-                            {{Form::label('due_date',__('Due Date'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
-                            {{Form::date('due_date',old('due_date'),array('class'=>'form-control','required'=>'required'))}}
-                        </div>
+                        
                         <div class="form-group">
                             {{ Form::label('priority', __('Priority'),['class'=>'form-label']) }} <span class="text-danger">*</span>
                             {!! Form::select('priority', $priority, old('priority'),array('class' => 'form-control hidesearch','required'=>'required')) !!}
@@ -119,15 +128,7 @@
                             {{ Form::label('assign', __('Assign'),['class'=>'form-label']) }} <span class="text-danger">*</span>
                             {!! Form::select('assign', $users, old('assign'),array('class' => 'form-control hidesearch')) !!}
                         </div>
-                        <div class="form-group col-md-12">
-                            {{Form::label('notes',__('Notes'),array('class'=>'form-label')) }}
-                            {{Form::textarea('notes',old('notes'),array('class'=>'form-control','rows'=>1))}}
-                        </div>
-                        <hr>
-                        <div class="form-group">
-                            {{Form::label('preferred_date',__('Preferred Date'),array('class'=>'form-label')) }}
-                            {{Form::date('preferred_date',old('preferred_date'),array('class'=>'form-control'))}}
-                        </div>
+                        <hr>                       
                         <div class="form-group">
                             {{ Form::label('preferred_time', __('Preferred Time'),['class'=>'form-label']) }}
                             {!! Form::select('preferred_time', $time, old('preferred_time'),array('class' => 'form-control hidesearch')) !!}
@@ -165,7 +166,7 @@
                             <tbody data-repeater-item>
                             <tr>
                                 <td width="30%">
-                                    {{Form::select('service_part_id',$parts,null,array('class'=>'form-control hidesearch service_part_id'))}}
+                                    {{Form::select('service_part_id',$parts,null,array('class'=>'form-control hidesearch service_part_id select2'))}}
                                 </td>
                                 <td>
                                     {{Form::number('quantity',null,array('class'=>'form-control quantity'))}}
