@@ -4,33 +4,53 @@ namespace App\Http\Controllers;
 
 use App\Models\ServicePart;
 use App\Models\ServiceTask;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ServicePartController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         if (\Auth::user()->can('manage service & part')) {
-            $serviceParts = ServicePart::where('parent_id', parentId())->get();
-            return view('service_part.index', compact('serviceParts'));
+            $category = Category::where('type', 'inventory')->orderBy('id', 'desc')->pluck('name', 'id')->toArray();
+
+            $query = ServicePart::with('category')->where('parent_id', parentId());
+
+            // Apply category filter if it's an AJAX request
+            if ($request->ajax() && $request->has('category_id')) {
+                if (!empty($request->category_id)) {
+                    $query->where('cat_id', $request->category_id);
+                }
+
+                $serviceParts = $query->get();
+
+                return response()->json([
+                    'html' => view('service_part.service_parts_table_rows', compact('serviceParts'))->render()
+                ]);
+            }
+
+            // For normal page load
+            $serviceParts = $query->get();
+            return view('service_part.index', compact('serviceParts', 'category'));
         } else {
             return redirect()->back()->with('error', __('Permission Denied.'));
         }
     }
 
-
     public function create()
-    {
-        return view('service_part.create');
-    }
+    {   
+        $category = Category::where('type', 'inventory')->orderBy('id', 'desc')->pluck('name', 'id')->toArray();
 
+        return view('service_part.create', compact('category'));
+    }
 
     public function store(Request $request)
     {
         if (\Auth::user()->can('create service & part')) {
             $validator = \Validator::make(
                 $request->all(), [
+                    'cat_id' => 'required',
                     'title' => 'required',
                     'sku' => 'required',
                     'unit' => 'required',
@@ -43,6 +63,7 @@ class ServicePartController extends Controller
             }
 
             $servicePart = new ServicePart();
+            $servicePart->cat_id = $request->cat_id;
             $servicePart->title = $request->title;
             $servicePart->sku = $request->sku;
             $servicePart->price = $request->price;
@@ -74,26 +95,26 @@ class ServicePartController extends Controller
         }
     }
 
-
     public function show($id)
     {
         $servicePart=ServicePart::find($id);
         return view('service_part.show',compact('servicePart'));
     }
 
-
     public function edit($id)
-    {
-        $servicePart=ServicePart::find($id);
-        return view('service_part.edit',compact('servicePart'));
-    }
+    {   
+        $category = Category::where('type', 'inventory')->orderBy('id', 'desc')->pluck('name', 'id')->toArray();
+        $servicePart = ServicePart::find($id);
 
+        return view('service_part.edit',compact('servicePart', 'category'));
+    }
 
     public function update(Request $request, $id)
     {
         if (\Auth::user()->can('edit service & part')) {
             $validator = \Validator::make(
                 $request->all(), [
+                    'cat_id' => 'required',
                     'title' => 'required',
                     'sku' => 'required',
                     'unit' => 'required',
@@ -105,6 +126,7 @@ class ServicePartController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
             $servicePart=ServicePart::find($id);
+            $servicePart->cat_id = $request->cat_id;
             $servicePart->title = $request->title;
             $servicePart->sku = $request->sku;
             $servicePart->price = $request->price;
@@ -138,7 +160,6 @@ class ServicePartController extends Controller
             return redirect()->back()->with('error', __('Permission Denied.'));
         }
     }
-
 
     public function destroy($id)
     {

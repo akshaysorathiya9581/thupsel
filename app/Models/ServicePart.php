@@ -9,6 +9,7 @@ class ServicePart extends Model
 {
     use HasFactory;
     protected $fillable=[
+        'cat_id',
         'title',
         'sku',
         'unit',
@@ -22,4 +23,10 @@ class ServicePart extends Model
     {
         return $this->hasMany('App\Models\ServiceTask','service_id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'cat_id');
+    }
+
 }

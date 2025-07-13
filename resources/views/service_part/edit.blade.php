@@ -2,6 +2,10 @@
 <div class="modal-body wrapper">
     <div class="row">
         <div class="form-group col-md-6">
+            {{ Form::label('cat_id', __('Select Categories'), ['class' => 'form-label']) }}
+            {{ Form::select('cat_id', $category, null, ['class' => 'form-control', 'required']) }}
+        </div>
+        <div class="form-group col-md-6">
             {{Form::label('title',__('Title'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
             {{Form::text('title',null,array('class'=>'form-control','placeholder'=>__('Enter title'),'required'=>'required'))}}
         </div>

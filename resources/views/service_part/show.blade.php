@@ -2,6 +2,12 @@
     <div class="row">
         <div class="col-md-6 col-lg-6">
             <div class="detail-group">
+                <h6>{{__('Category')}}</h6>
+                <p class="mb-20">{{ $servicePart->category->name }} </p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <div class="detail-group">
                 <h6>{{__('Title')}}</h6>
                 <p class="mb-20">{{ $servicePart->title }} </p>
             </div>

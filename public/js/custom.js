@@ -153,6 +153,17 @@ $(document).on('click', '.fc-day-grid-event', function (e) {
     });
 });
 
+function bindCustomModals() {
+    $('.customModal').off('click').on('click', function (e) {
+        e.preventDefault();
+        const url = $(this).data('url');
+        const title = $(this).data('title');
+        const size = $(this).data('size') || 'lg';
+
+        // Load modal content using AJAX or show modal logic
+        // ...
+    });
+}
 
 function toastrs(title, message, status) {
     "use strict";
@@ -224,12 +235,55 @@ function datatable(){
 
 
     //Advance Datatable
-    $('.datatbl-advance').DataTable({
+    let table = $('.datatbl-advance').DataTable({
         "scrollX": true,
         stateSave: false,
         dom: 'Bfrtip',
         buttons: [
             'print','excel','pdf', 'csv', 'copy',
-        ]
+        ],
+        responsive: true,
+        ordering: true,
+        destroy: true  // to reinitialize safely on filter
+    });
+
+    $(document).on('change', '#categoryFilter', function () {
+        var categoryId = $(this).val();
+        $.ajax({
+            url: services_parts_filter_by_category,
+            type: 'GET',
+            data: {
+                category_id: categoryId
+            },
+            success: function (response) {
+                // Clear and update table body
+                table.clear().destroy(); // destroy previous instance
+                $('#servicePartsTableBody').html(response.html);
+
+                // Re-initialize DataTable
+                table = $('.datatbl-advance').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: ['print','excel','pdf', 'csv', 'copy',],
+                    responsive: true,
+                    ordering: true
+                });
+                
+                // Re-initialize Feather Icons
+                if (typeof feather !== 'undefined') {
+                    feather.replace();
+                }
+
+                // Rebind Bootstrap tooltips (if any)
+                $('[data-bs-toggle="tooltip"]').tooltip();
+
+                // If you use custom modal JS, reinitialize it here
+                if (typeof bindCustomModals === 'function') {
+                    bindCustomModals();
+                }
+            },
+            error: function () {
+                alert('Something went wrong.');
+            }
+        });
     });
 }

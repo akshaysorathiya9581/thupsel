@@ -7,7 +7,10 @@
                 <label class="form-check-label" for="part">{{ __('Inventory') }}</label>
             </div>
         </div>
-
+        <div class="form-group col-md-6">
+            {{ Form::label('cat_id', __('Select Categories'), ['class' => 'form-label']) }}
+            {{ Form::select('cat_id', $category, null, ['class' => 'form-control', 'placeholder' => 'Choose categories...', 'required']) }}
+        </div>
         <div class="form-group col-md-6">
             {{ Form::label('title', __('Title'), ['class' => 'form-label']) }} <span class="text-danger">*</span>
             {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter title'), 'required']) }}

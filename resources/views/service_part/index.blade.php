@@ -29,9 +29,24 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
+                        <div>
+                            {{-- 🔽 Category Filter Dropdown --}}
+                            <select id="categoryFilter" class="form-control" style="min-width: 250px;">
+                                <option value="">{{ __('Filter by Category') }}</option>
+                                @foreach($category as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Table Buttons and Search box will come automatically on right --}}
+                    </div>
+                    {{-- 🔽 Table Search Box --}}
                     <table class="display dataTable cell-border datatbl-advance">
                         <thead>
                         <tr>
+                            <th>{{__('Category')}}</th>
                             <th>{{__('Title')}}</th>
                             <th>{{__('No of Qty')}}</th>
                             <th>{{__('Price')}}</th>
@@ -41,43 +56,8 @@
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach ($serviceParts as $servicePart)
-                            <tr>
-                                <td>{{ $servicePart->title }} </td>
-                                <td>{{ $servicePart->sku }} </td>
-                                <td>{{ priceFormat($servicePart->price) }} </td>
-                                <td>{{ $servicePart->unit }} </td>
-                                <td>{{ ucfirst($servicePart->type) }} </td>
-                                <td>{{ !empty($servicePart->description)?$servicePart->description:"-" }} </td>
-                                <td>
-                                    <div class="cart-action">
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['services-parts.destroy', $servicePart->id]]) !!}
-                                        @can('show service & part')
-                                            <a class="text-warning customModal" data-bs-toggle="tooltip" data-size="lg"
-                                               data-bs-original-title="{{__('Details')}}" href="#"
-                                               data-url="{{ route('services-parts.show',$servicePart->id) }}"
-                                               data-title="{{__('Inventory Detail')}}"> <i data-feather="eye"></i></a>
-
-                                        @endcan
-                                        @can('edit service & part')
-                                            <a class="text-success customModal" data-bs-toggle="tooltip" data-size="lg"
-                                               data-bs-original-title="{{__('Edit')}}" href="#"
-                                               data-url="{{ route('services-parts.edit',$servicePart->id) }}"
-                                               data-title="{{__('Edit Inventory Items')}}"> <i data-feather="edit"></i></a>
-                                        @endcan
-                                        @can('delete service & part')
-                                            <a class=" text-danger confirm_dialog" data-bs-toggle="tooltip"
-                                               data-bs-original-title="{{__('Detete')}}" href="#"> <i
-                                                    data-feather="trash-2"></i></a>
-                                        @endcan
-                                        {!! Form::close() !!}
-                                    </div>
-
-                                </td>
-                            </tr>
-                        @endforeach
-
+                        <tbody id="servicePartsTableBody">
+                            @include('service_part.service_parts_table_rows', ['serviceParts' => $serviceParts])
                         </tbody>
                     </table>
                 </div>
@@ -85,3 +65,7 @@
         </div>
     </div>
 @endsection
+
+<script>
+    var services_parts_filter_by_category = "{{ route('services-parts.index') }}";
+</script>
