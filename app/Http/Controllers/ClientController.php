@@ -41,13 +41,14 @@ class ClientController extends Controller
                     'parts_cat_id' => 'array|required',
                     'name' => 'required',
                     'email' => 'required|email|unique:users',
-                    'service_address' => 'required',
-                    'service_city' => 'required',
-                    'service_state' => 'required',
-                    'service_country' => 'required',
-                    'service_zip_code' => 'required',
+                    // 'service_address' => 'required',
+                    // 'service_city' => 'required',
+                    // 'service_state' => 'required',
+                    // 'service_country' => 'required',
+                    // 'service_zip_code' => 'required',
                 ]
             );
+
             if ($validator->fails()) {
                 $messages = $validator->getMessageBag();
                 return redirect()->back()->with('error', $messages->first());
@@ -78,11 +79,11 @@ class ClientController extends Controller
                 $client->client_id=$this->clientNumber();
                 $client->user_id=$user->id;
                 $client->company=$request->company;
-                $client->service_address=$request->service_address;
-                $client->service_city=$request->service_city;
-                $client->service_state=$request->service_state;
-                $client->service_country=$request->service_country;
-                $client->service_zip_code=$request->service_zip_code;
+                $client->service_address=$request->service_address != '' ? $request->service_address : NULL;
+                $client->service_city=$request->service_city != '' ? $request->service_city : NULL;
+                $client->service_state=$request->service_state != '' ? $request->service_state : NULL;
+                $client->service_country=$request->service_country != '' ? $request->service_country : NULL;
+                $client->service_zip_code=$request->service_zip_code != '' ? $request->service_zip_code : NULL;
                 if(isset($request->billing_info)){
                     $client->billing_address=$request->billing_address;
                     $client->billing_city=$request->billing_city;
@@ -90,11 +91,11 @@ class ClientController extends Controller
                     $client->billing_country=$request->billing_country;
                     $client->billing_zip_code=$request->billing_zip_code;
                 }else{
-                    $client->billing_address=$request->service_address;
-                    $client->billing_city=$request->service_city;
-                    $client->billing_state=$request->service_state;
-                    $client->billing_country=$request->service_country;
-                    $client->billing_zip_code=$request->service_zip_code;
+                    $client->billing_address=$request->service_address != '' ? $request->service_address : NULL;
+                    $client->billing_city=$request->service_city != '' ? $request->service_city : NULL;
+                    $client->billing_state=$request->service_state != '' ? $request->service_state : NULL;
+                    $client->billing_country=$request->service_country != '' ? $request->service_country : NULL;
+                    $client->billing_zip_code=$request->service_zip_code != '' ? $request->service_zip_code : NULL;
                 }
                 $client->parent_id=parentId();
                 $client->save();
@@ -168,11 +169,11 @@ class ClientController extends Controller
                     'parts_cat_id' => 'array|required',
                     'name' => 'required',
                     'email' => 'required|email|unique:users,email,' . $id,
-                    'service_address' => 'required',
-                    'service_city' => 'required',
-                    'service_state' => 'required',
-                    'service_country' => 'required',
-                    'service_zip_code' => 'required',
+                    // 'service_address' => 'required',
+                    // 'service_city' => 'required',
+                    // 'service_state' => 'required',
+                    // 'service_country' => 'required',
+                    // 'service_zip_code' => 'required',
 
                 ]
             );
@@ -189,11 +190,11 @@ class ClientController extends Controller
             if(!empty($user)){
                 $client=ClientDetail::where('user_id',$user->id)->first();
                 $client->company=$request->company;
-                $client->service_address=$request->service_address;
-                $client->service_city=$request->service_city;
-                $client->service_state=$request->service_state;
-                $client->service_country=$request->service_country;
-                $client->service_zip_code=$request->service_zip_code;
+                $client->service_address=$request->service_address ? $request->service_address : NULL;
+                $client->service_city=$request->service_city ? $request->service_city : NULL;
+                $client->service_state=$request->service_state ? $request->service_state : NULL;
+                $client->service_country=$request->service_country ? $request->service_country : NULL;
+                $client->service_zip_code=$request->service_zip_code ? $request->service_zip_code : NULL;
                 $client->billing_address=$request->billing_address;
                 $client->billing_city=$request->billing_city;
                 $client->billing_state=$request->billing_state;

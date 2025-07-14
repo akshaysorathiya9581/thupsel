@@ -46,10 +46,10 @@
                     <div class="head-invoice">
                         <div class="codex-brand">
                             <a class="codexbrand-logo" href="Javascript:void(0);">
-                                <img class="img-fluid invoice-logo" src=" {{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}" alt="invoice-logo">
+                                <img class="img-fluid invoice-logo" src=" {{asset(Storage::url('upload/logo')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}" alt="invoice-logo">
                             </a>
                             <a class="codexdark-logo" href="Javascript:void(0);">
-                                <img class="img-fluid invoice-logo" src=" {{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}" alt="invoice-logo">
+                                <img class="img-fluid invoice-logo" src=" {{asset(Storage::url('upload/logo')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}" alt="invoice-logo">
                             </a>
                         </div>
                         <ul class="contact-list">
