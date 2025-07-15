@@ -21,15 +21,39 @@
 @endphp
 @push('script-page')
     <script>
+        // $(document).on('click', '.print', function () {
+        //     var printContents = document.getElementById('invoice-print').innerHTML;
+        //     var originalContents = document.body.innerHTML;
+        //     document.body.innerHTML = printContents;
+        //     $('.invoice-action').addClass('d-none');
+        //     window.print();
+        //     $('.invoice-action').removeClass('d-none');
+        //     document.body.innerHTML = originalContents;
+        // });
+
         $(document).on('click', '.print', function () {
-            var printContents = document.getElementById('invoice-print').innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            $('.invoice-action').addClass('d-none');
-            window.print();
-            $('.invoice-action').removeClass('d-none');
-            document.body.innerHTML = originalContents;
-        });
+    var printContents = document.getElementById('invoice-print').innerHTML;
+    var myWindow = window.open('', '', 'height=800,width=1000');
+
+    myWindow.document.write('<html><head><title>Print Invoice</title>');
+    // include current CSS links
+    $('link[rel="stylesheet"]').each(function () {
+        myWindow.document.write('<link rel="stylesheet" href="' + $(this).attr('href') + '" type="text/css" />');
+    });
+    myWindow.document.write('</head><body>');
+    myWindow.document.write(printContents);
+    myWindow.document.write('</body></html>');
+
+    myWindow.document.close(); // necessary for some browsers
+    myWindow.focus();
+
+    setTimeout(function () {
+        myWindow.print();
+        myWindow.close();
+    }, 500);
+});
+
+
     </script>
 @endpush
 @section('card-action-btn')
