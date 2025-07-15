@@ -241,7 +241,7 @@ class SettingController extends Controller
 
             if ($request->logo) {
                 $ownerLogoName = parentId() . '_logo.png';
-                 $request->file('logo')->storeAs('upload/logo/', $ownerLogoName);
+                 $request->file('logo')->storeAs('upload/logo/', $ownerLogoName, 'public');
 
                 \DB::insert(
                     'insert into settings (`value`, `name`,`parent_id`) values (?, ?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`) ', [
@@ -256,7 +256,7 @@ class SettingController extends Controller
 
             if ($request->favicon) {
                 $ownerFaviconName = parentId() . '_favicon.png';
-                 $request->file('favicon')->storeAs('upload/logo/', $ownerFaviconName);
+                 $request->file('favicon')->storeAs('upload/logo/', $ownerFaviconName , 'public');
 
                 \DB::insert(
                     'insert into settings (`value`, `name`,`parent_id`) values (?, ?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`) ', [
