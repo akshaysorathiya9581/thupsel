@@ -9,19 +9,19 @@
     <div class="logo-gridwrap">
         <a class="codexbrand-logo" href="{{route('home')}}">
             <img class="img-fluid"
-                 src="{{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
+                 src="{{asset(Storage::url('upload/logo')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
                  alt="theeme-logo">
         </a>
         <a class="codex-darklogo" href="{{route('home')}}">
             <img class="img-fluid"
-                 src="{{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
+                 src="{{asset(Storage::url('upload/logo')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
                  alt="theeme-logo"></a>
         <div class="sidebar-action"><i data-feather="menu"></i></div>
     </div>
     <div class="icon-logo">
         <a href="{{route('home')}}">
             <img class="img-fluid"
-                 src="{{asset(Storage::url('upload/logo/')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
+                 src="{{asset(Storage::url('upload/logo')).'/'.(isset($admin_logo) && !empty($admin_logo)?$admin_logo:'logo.png')}}"
                  alt="theeme-logo">
         </a>
     </div>

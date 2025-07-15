@@ -44,21 +44,21 @@ $(document).on('click', '.customModal', function () {
                         minlength: 10,
                         maxlength: 15
                     },
-                    service_city: {
-                        required: true
-                    },
-                    service_state: {
-                        required: true
-                    },
-                    service_country: {
-                        required: true
-                    },
-                    service_zip_code: {
-                        required: true
-                    },
-                    service_address: {
-                        required: true
-                    }
+                    // service_city: {
+                    //     required: true
+                    // },
+                    // service_state: {
+                    //     required: true
+                    // },
+                    // service_country: {
+                    //     required: true
+                    // },
+                    // service_zip_code: {
+                    //     required: true
+                    // },
+                    // service_address: {
+                    //     required: true
+                    // }
                 },
                 messages: {
                     'parts_cat_id[]': {
@@ -77,21 +77,21 @@ $(document).on('click', '.customModal', function () {
                         minlength: "Phone number must be at least 10 digits",
                         maxlength: "Phone number must not exceed 15 digits"
                     },
-                    service_city: {
-                        required: "Please enter your service city",
-                    },
-                    service_state: {
-                        required: "Please enter your service state",
-                    },
-                    service_country: {
-                        required: "Please enter your service country",
-                    },
-                    service_zip_code: {
-                        required: "Please enter your service zip code",
-                    },
-                    service_address: {
-                        required: "Please enter your service address",
-                    }
+                    // service_city: {
+                    //     required: "Please enter your service city",
+                    // },
+                    // service_state: {
+                    //     required: "Please enter your service state",
+                    // },
+                    // service_country: {
+                    //     required: "Please enter your service country",
+                    // },
+                    // service_zip_code: {
+                    //     required: "Please enter your service zip code",
+                    // },
+                    // service_address: {
+                    //     required: "Please enter your service address",
+                    // }
                 },
                 errorElement: 'span',
                 errorClass: 'text-danger',
