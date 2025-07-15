@@ -169,6 +169,13 @@
                 @endif
             @endif
 
+            <li class="menu-item {{in_array($routeName,['parts.index'])?'active':''}} ">
+                <a href="{{route('parts.index')}}">
+                    <div class="icon-item"><i data-feather="file-text"></i></div>
+                    <span>{{__('History Tracking')}}</span>
+                </a>
+            </li>
+
             @if(Gate::check('manage wo type')  )
                 <li class="cdxmenu-title">
                     <h5>{{__('System Setup')}}</h5>
@@ -182,9 +189,7 @@
                         </a>
                     </li>
                 @endif
-
             @endif
-
 
             @if(Gate::check('manage pricing packages') || Gate::check('manage pricing transation') || Gate::check('manage account settings') || Gate::check('manage password settings') || Gate::check('manage general settings') || Gate::check('manage email settings')  || Gate::check('manage payment settings') || Gate::check('manage company settings') || Gate::check('manage seo settings') || Gate::check('manage google recaptcha settings'))
                 <li class="cdxmenu-title">

@@ -20,7 +20,10 @@ use App\Http\Controllers\WorkOrderController;
 use App\Http\Controllers\WOTypeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\PartController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -310,4 +313,22 @@ Route::group(
 }
 );
 
+//-------------------------------Parts-------------------------------------------
 
+Route::group(
+    [
+        'middleware' => [
+            'auth',
+            'XSS',
+        ],
+    ], function () {
+    Route::get('parts/{part}/usage/create', [PartController::class, 'createUsage'])->name('parts.createUsage');
+    Route::post('parts/{part}/usage', [PartController::class, 'storeUsage'])->name('parts.storeUsage');
+
+    // You might also want routes for Teams, Sites, Projects if they need separate management interfaces
+    Route::resource('teams', TeamController::class);
+    Route::resource('sites', SiteController::class);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('parts', PartController::class);
+}
+);
