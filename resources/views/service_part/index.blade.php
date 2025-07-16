@@ -52,6 +52,7 @@
                             <th>{{__('Price')}}</th>
                             <th>{{__('Unit')}}</th>
                             <th>{{__('Type')}}</th>
+                            <th>{{__('Image')}}</th>
                             <th>{{__('Description')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>

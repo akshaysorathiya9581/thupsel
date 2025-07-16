@@ -55,6 +55,7 @@ class ServicePartController extends Controller
                     'sku' => 'required',
                     'unit' => 'required',
                     'price' => 'required',
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image if provided
                 ]
             );
             if ($validator->fails()) {
@@ -71,6 +72,11 @@ class ServicePartController extends Controller
             $servicePart->description = $request->description;
             $servicePart->type = $request->type;
             $servicePart->parent_id = parentId();
+            
+            $image_name = parentId() . '_image.png';
+            $request->file('image')->storeAs('upload/service_part/', $image_name, 'public');
+            $servicePart->image = $image_name;
+            
             $servicePart->save();
 
             if ($request->type=='service' && count($request->task) > 0 && count($request->duration) > 0) {
@@ -86,9 +92,9 @@ class ServicePartController extends Controller
                         $serviceTask->description = $task_descriptions[$key];
                         $serviceTask->save();
                     }
-
                 }
             }
+
             return redirect()->route('services-parts.index')->with('success', __('Service & Part successfully created.'));
         } else {
             return redirect()->back()->with('error', __('Permission Denied.'));
@@ -119,6 +125,7 @@ class ServicePartController extends Controller
                     'sku' => 'required',
                     'unit' => 'required',
                     'price' => 'required',
+                    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image if provided
                 ]
             );
             if ($validator->fails()) {
@@ -132,6 +139,24 @@ class ServicePartController extends Controller
             $servicePart->price = $request->price;
             $servicePart->unit = $request->unit;
             $servicePart->description = $request->description;
+
+            // If new image uploaded
+            if ($request->hasFile('image')) {
+                $image_name = parentId() . '_image.png';
+
+                // Delete old image if exists
+                if (!empty($servicePart->image)) {
+                    $oldPath = public_path('storage/upload/service_part/' . $servicePart->image);
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    }
+                }
+
+                // Store new image
+                $request->file('image')->storeAs('upload/service_part/', $image_name, 'public');
+                $servicePart->image = $image_name;
+            }
+
             $servicePart->save();
 
             if ($servicePart->type=='service' && count($request->task) > 0 && count($request->duration) > 0) {

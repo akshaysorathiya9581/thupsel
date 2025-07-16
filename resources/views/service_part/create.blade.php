@@ -1,4 +1,4 @@
-{{ Form::open(['url' => 'services-parts', 'method' => 'post']) }}
+{{ Form::open(['url' => 'services-parts', 'method' => 'post', 'enctype' => "multipart/form-data"]) }}
 <div class="modal-body wrapper">
     <div class="row">
         <div class="form-group col-md-12">
@@ -15,22 +15,24 @@
             {{ Form::label('title', __('Title'), ['class' => 'form-label']) }} <span class="text-danger">*</span>
             {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter title'), 'required']) }}
         </div>
-
         <div class="form-group col-md-6">
             {{ Form::label('sku', __('No of Qty'), ['class' => 'form-label']) }} <span class="text-danger">*</span>
             {{ Form::text('sku', null, ['class' => 'form-control', 'placeholder' => __('Enter no of qty'), 'required']) }}
         </div>
-
         <div class="form-group col-md-6">
             {{ Form::label('price', __('Price'), ['class' => 'form-label']) }} <span class="text-danger">*</span>
             {{ Form::text('price', null, ['class' => 'form-control', 'placeholder' => __('Enter price'), 'required']) }}
         </div>
-
         <div class="form-group col-md-6">
             {{ Form::label('unit', __('Unit'), ['class' => 'form-label']) }} <span class="text-danger">*</span>
             {{ Form::text('unit', null, ['class' => 'form-control', 'placeholder' => __('Enter unit')]) }}
         </div>
-
+        <div class="col-md-6">
+            <div class="form-group">
+                {{Form::label('image',__('Image'),array('class'=>'form-label'))}}
+                {{Form::file('image',array('class'=>'form-control'))}}
+            </div>
+        </div>
         <div class="form-group col-md-12">
             {{ Form::label('description', __('Description'), ['class' => 'form-label']) }} <span class="text-danger">*</span>
             {{ Form::text('description', null, ['class' => 'form-control', 'placeholder' => __('Enter description')]) }}

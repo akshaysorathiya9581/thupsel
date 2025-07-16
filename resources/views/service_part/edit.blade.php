@@ -1,4 +1,4 @@
-{{ Form::model($servicePart, array('route' => array('services-parts.update', $servicePart->id), 'method' => 'PUT')) }}
+{{ Form::model($servicePart, array('route' => array('services-parts.update', $servicePart->id), 'method' => 'PUT', 'enctype' => "multipart/form-data")) }}
 <div class="modal-body wrapper">
     <div class="row">
         <div class="form-group col-md-6">
@@ -20,6 +20,20 @@
         <div class="form-group col-md-6">
             {{Form::label('unit',__('Unit'),array('class'=>'form-label')) }} <span class="text-danger">*</span>
             {{Form::text('unit',null,array('class'=>'form-control','placeholder'=>__('Enter unit')))}}
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{Form::label('image',__('Image'),array('class'=>'form-label'))}}
+                {{Form::file('image',array('class'=>'form-control'))}}
+            </div>
+            {{-- Display existing image if available --}}
+            @if ($servicePart->image)
+                <div class="mb-2">
+                    <img src="{{ asset('storage/upload/service_part/' . $servicePart->image) }}" alt="{{ $servicePart->name }} Image" style="max-width: 150px; height: auto;">
+                </div>
+            @else
+                <p>No image uploaded yet.</p>
+            @endif
         </div>
         <div class="form-group col-md-12">
             {{Form::label('description',__('Description'),array('class'=>'form-label')) }} <span class="text-danger">*</span>

@@ -6,6 +6,13 @@
         <td>{{ priceFormat($servicePart->price) }} </td>
         <td>{{ $servicePart->unit }} </td>
         <td>{{ ucfirst($servicePart->type) }} </td>
+        <td>
+            @if($servicePart->image)
+                <img class="img-fluid rounded-50" src="{{ asset('storage/upload/service_part/' . $servicePart->image) }}" alt="image">
+            @else
+                -
+            @endif
+        </td>
         <td>{{ !empty($servicePart->description)?$servicePart->description:"-" }} </td>
         <td>
             <div class="cart-action">
